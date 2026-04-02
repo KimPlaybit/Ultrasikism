@@ -1,0 +1,1 @@
+# SwarmComponents.SC2Map

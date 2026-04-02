@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <!-- Terran (SCV Build) — indexes from editor, 25% of standard build time -->
+    <!-- Build01=CommandCenter Build02=SupplyDepot Build03=Refinery Build04=Barracks -->
+    <!-- Build05=EngineeringBay Build06=MissileTurret Build07=Bunker Build08=Refinery(Rich) -->
+    <!-- Build09=SensorTower Build10=GhostAcademy Build11=Factory Build12=Starport -->
+    <!-- Build13=None Build14=Armory Build15=None Build16=FusionCore -->
+    <CAbilBuild id="TerranBuild">
+        <InfoArray index="Build1"  Time="17.75"/>
+        <InfoArray index="Build2"  Time="5.25"/>
+        <InfoArray index="Build3"  Time="5.25"/>
+        <InfoArray index="Build4"  Time="11.5"/>
+        <InfoArray index="Build5"  Time="6.25"/>
+        <InfoArray index="Build6"  Time="4.5"/>
+        <InfoArray index="Build7"  Time="7.25"/>
+        <InfoArray index="Build8"  Time="5.25"/>
+        <InfoArray index="Build9"  Time="4.5"/>
+        <InfoArray index="Build10" Time="7.25"/>
+        <InfoArray index="Build11" Time="10.75"/>
+        <InfoArray index="Build12" Time="9"/>
+        <InfoArray index="Build14" Time="11.5"/>
+        <InfoArray index="Build16" Time="11.5"/>
+    </CAbilBuild>
+
+    <!-- Protoss (Probe Build) — indexes from editor, 25% of standard build time -->
+    <!-- Build01=Nexus Build02=Pylon Build03=Assimilator Build04=Gateway Build05=Forge -->
+    <!-- Build06=FleetBeacon Build07=TwilightCouncil Build08=PhotonCannon Build09=None -->
+    <!-- Build10=Stargate Build11=TemplarArchives Build12=DarkShrine -->
+    <!-- Build13=RoboticsBay Build14=RoboticsFacility Build15=CyberneticsCore -->
+    <CAbilBuild id="ProtossBuild">
+        <InfoArray index="Build1"  Time="17.75"/>
+        <InfoArray index="Build2"  Time="1.25"/>
+        <InfoArray index="Build3"  Time="5.25"/>
+        <InfoArray index="Build4"  Time="11.5"/>
+        <InfoArray index="Build5"  Time="6.25"/>
+        <InfoArray index="Build6"  Time="10.75"/>
+        <InfoArray index="Build7"  Time="9"/>
+        <InfoArray index="Build8"  Time="7.25"/>
+        <InfoArray index="Build10" Time="10.75"/>
+        <InfoArray index="Build11" Time="9"/>
+        <InfoArray index="Build12" Time="25"/>
+        <InfoArray index="Build13" Time="11.5"/>
+        <InfoArray index="Build14" Time="11.5"/>
+        <InfoArray index="Build15" Time="9"/>
+    </CAbilBuild>
+
+    <!-- Zerg (Drone Build) — indexes from editor, 25% of standard build time -->
+    <!-- Build01=Hatchery Build02=CreepTumor Build03=Extractor Build04=SpawningPool -->
+    <!-- Build05=EvolutionChamber Build06=HydraliskDen Build07=Spire Build08=UltraliskCavern -->
+    <!-- Build09=InfestationPit Build10=NydusNetwork Build11=BanelingNest -->
+    <!-- Build12-13=None Build14=RoachWarren Build15=SpineCrawler Build16=SporeCrawler -->
+    <CAbilBuild id="ZergBuild">
+        <InfoArray index="Build1"  Time="17.75"/>
+        <InfoArray index="Build2"  Time="3.75"/>
+        <InfoArray index="Build3"  Time="5.25"/>
+        <InfoArray index="Build4"  Time="11.5"/>
+        <InfoArray index="Build5"  Time="6.25"/>
+        <InfoArray index="Build6"  Time="8.25"/>
+        <InfoArray index="Build7"  Time="17.75"/>
+        <InfoArray index="Build8"  Time="11.5"/>
+        <InfoArray index="Build9"  Time="9"/>
+        <InfoArray index="Build10" Time="9"/>
+        <InfoArray index="Build11" Time="10.75"/>
+        <InfoArray index="Build14" Time="9.75"/>
+        <InfoArray index="Build15" Time="9"/>
+        <InfoArray index="Build16" Time="5.25"/>
+    </CAbilBuild>
+</Catalog>

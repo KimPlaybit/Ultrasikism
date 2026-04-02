@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TriggerData>
+    <Root>
+        <Item Type="CustomScript" Id="9D155F69"/>
+        <Item Type="Trigger" Id="10738AA8"/>
+    </Root>
+    <Element Type="CustomScript" Id="9D155F69">
+        <ScriptCode>
+            include &quot;scripts/main.galaxy&quot;;
+        </ScriptCode>
+    </Element>
+    <Element Type="Trigger" Id="10738AA8">
+        <Variable Type="Variable" Id="E7563C53"/>
+        <Event Type="FunctionCall" Id="A72A90F3"/>
+        <Action Type="FunctionCall" Id="764B8FB3"/>
+    </Element>
+    <Element Type="Variable" Id="E7563C53">
+        <VariableType>
+            <Type Value="point"/>
+        </VariableType>
+        <Value Type="Param" Id="A6E046D0"/>
+    </Element>
+    <Element Type="Param" Id="A6E046D0">
+        <ValueType Type="point"/>
+        <ValueId Id="673309917"/>
+    </Element>
+    <Element Type="FunctionCall" Id="A72A90F3">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="764B8FB3">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000123"/>
+        <ScriptCode>
+            MainSetup();
+        </ScriptCode>
+    </Element>
+</TriggerData>

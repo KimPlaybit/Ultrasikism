@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PlacedObjects Version="27">
+    <ObjectPoint Id="673309917" Position="99,99,0" Scale="1,1,1" Type="Normal" Name="Point 001" Color="0,0,0,0"/>
+    <ObjectUnit Id="1224477046" Variation="7" Position="123,125.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField"/>
+    <ObjectUnit Id="874217258" Variation="3" Position="82,25.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="250257539" Variation="5" Position="39,38.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="2028057405" Variation="5" Position="178,84.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="814831248" Variation="5" Position="124,114.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField750"/>
+    <ObjectUnit Id="1656066931" Variation="5" Position="36,129.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="568670811" Variation="5" Position="125,26.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="261170942" Variation="7" Position="149,40.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="399413909" Variation="5" Position="61,155.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="1919494892" Variation="3" Position="184,168.5,0" Scale="1,1,1" UnitType="PurifierMineralField750"/>
+    <ObjectUnit Id="477933672" Variation="2" Position="76,116.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField750"/>
+    <ObjectUnit Id="1275952641" Variation="3" Position="77,85.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField750"/>
+    <ObjectUnit Id="276649911" Variation="5" Position="46,24.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="1114178198" Variation="6" Position="123,25.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="360254345" Variation="5" Position="178,126.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="2015630068" Position="184,192.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="798039798" Variation="7" Position="184,108.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="1622108846" Variation="8" Position="117,65.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField"/>
+    <ObjectUnit Id="1504810753" Variation="9" Position="104,130.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField750"/>
+    <ObjectUnit Id="316888868" Variation="9" Position="152,193.5,0" Scale="1,1,1" UnitType="PurifierMineralField750"/>
+    <ObjectUnit Id="254583265" Variation="3" Position="124,96.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField750"/>
+    <ObjectUnit Id="188305641" Variation="6" Position="100,168.5,0" Scale="1,1,1" UnitType="PurifierMineralField750"/>
+    <ObjectUnit Id="1419910214" Variation="1" Position="86,189.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="360734593" Variation="9" Position="44,129.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="1830602856" Variation="2" Position="45,141.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="1026191860" Position="127,84.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField750"/>
+    <ObjectUnit Id="1953973635" Variation="4" Position="29,60.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="888053822" Variation="2" Position="116,189.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+    <ObjectUnit Id="1432755565" Variation="9" Position="78,135.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField"/>
+    <ObjectUnit Id="2023707255" Variation="4" Position="69,85.5,0" Scale="1,1,1" UnitType="PurifierRichMineralField"/>
+    <ObjectUnit Id="158458872" Variation="3" Position="35,141.5,0" Scale="1,1,1" UnitType="PurifierMineralField"/>
+</PlacedObjects>

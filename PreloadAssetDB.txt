@@ -1,0 +1,8 @@
+[Abil]
+id=ProtossBuild
+asset=Assets\Textures\WayPointLine.dds
+asset=Assets\UI\Cursors\WayPointConfirm_Void\WayPointConfirm_Void.m3
+Actor=CommandUIHarnessAttackProtoss,CommandUIHarnessAttackTerran,CommandUIHarnessAttackZerg,CommandUIHarnessConfirmProtoss,CommandUIHarnessConfirmTerran,CommandUIHarnessConfirmZerg,CommandUIHarnessMoveProtoss,CommandUIHarnessMoveTerran,CommandUIHarnessMoveZerg,CommandUIHarnessRallyProtoss,CommandUIHarnessRallyTerran,CommandUIHarnessRallyZerg,##id##ingStartSound,ProtossConstruction,TerrainMgr
+Alert=BuildComplete,Error
+Unit=Assimilator,CyberneticsCore,DarkShrine,FleetBeacon,Forge,Gateway,Nexus,PhotonCannon,Pylon,RoboticsBay,RoboticsFacility,Stargate,TemplarArchive,TwilightCouncil
+

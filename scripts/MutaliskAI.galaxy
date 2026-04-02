@@ -1,0 +1,106 @@
+// MutaliskAI — spawns 8 Mutalisks at random positions on the map at 20, 22, 24, 26, and 28
+// minutes after game start (5 waves total, every 2 minutes). They retarget every 10 s when
+// idle, hunting active human players.
+// Requires WinLose.galaxy to be included first (provides WinLose_FindTargetPoint).
+
+const fixed MUTALISK_FIRST_SPAWN_TIME  = 1200.0; // 20 minutes
+const fixed MUTALISK_SPAWN_INTERVAL    = 60.0;  // 2 minutes between waves
+const int   MUTALISK_WAVE_COUNT        = 5;      // 20, 22, 24, 26, 28 min
+const fixed MUTALISK_SPAWN_RADIUS_MIN  = 15.0;
+const fixed MUTALISK_SPAWN_RADIUS_MAX  = 40.0;
+const int   MUTALISK_SPAWN_COUNT       = 8;
+
+static unitgroup gv_MutaliskGroup;
+static trigger   gv_Mutalisk_RetargetTrigger;
+static trigger   gv_Mutalisk_SpawnTrigger;
+static int       gv_Mutalisk_WavesFired;
+
+// Returns a random point spread around the map center.
+point MutaliskAI_RandomPoint() {
+    fixed lv_angle;
+    fixed lv_dist;
+
+    lv_angle = RandomFixed(0.0, 360.0);
+    lv_dist  = RandomFixed(MUTALISK_SPAWN_RADIUS_MIN, MUTALISK_SPAWN_RADIUS_MAX);
+    return PointWithOffsetPolar(PointFromId(673309917), lv_dist, lv_angle);
+}
+
+// Fires every 10 s. Re-issues attack-move on any idle, living Mutalisk.
+bool Mutalisk_Retarget(bool testConds, bool runActions) {
+    point lv_target;
+    unit  lv_mutalisk;
+    int   lv_i;
+    int   lv_count;
+
+    if (!runActions) { return true; }
+
+    lv_count = UnitGroupCount(gv_MutaliskGroup, c_unitCountAll);
+    if (lv_count == 0) { return true; }
+
+    lv_target = WinLose_FindTargetPoint();
+
+    lv_i = 1;
+    while (lv_i <= lv_count) {
+        lv_mutalisk = UnitGroupUnit(gv_MutaliskGroup, lv_i);
+        if (UnitIsAlive(lv_mutalisk) && UnitOrderCount(lv_mutalisk) == 0) {
+            UnitIssueOrder(lv_mutalisk,
+                OrderTargetingPoint(AbilityCommand("attack", 0), lv_target),
+                0);
+        }
+        lv_i += 1;
+    }
+
+    return true;
+}
+
+// Fires at 20 min and then every 2 min. Spawns 8 Mutalisks per wave, stops after 5 waves.
+bool MutaliskAI_SpawnHandler(bool testConds, bool runActions) {
+    int lv_i;
+
+    if (!runActions) { return true; }
+
+    gv_Mutalisk_WavesFired += 1;
+
+    // Add 8 new Mutalisks to the shared group.
+    lv_i = 1;
+    while (lv_i <= MUTALISK_SPAWN_COUNT) {
+        UnitCreate(1, "Mutalisk", c_unitCreateIgnorePlacement, 12,
+            MutaliskAI_RandomPoint(), 270.0);
+        UnitGroupAdd(gv_MutaliskGroup, UnitLastCreated());
+        lv_i += 1;
+    }
+
+    // Start the retarget loop on the first wave only.
+    if (gv_Mutalisk_WavesFired == 1) {
+        gv_Mutalisk_RetargetTrigger = TriggerCreate("Mutalisk_Retarget");
+        TriggerAddEventTimePeriodic(gv_Mutalisk_RetargetTrigger, 10.0, c_timeGame);
+    }
+
+    // Issue attack orders to newly arrived Mutalisks immediately.
+    Mutalisk_Retarget(false, true);
+
+    // Stop spawning after the final wave (28 min).
+    if (gv_Mutalisk_WavesFired >= MUTALISK_WAVE_COUNT) {
+        TriggerDestroy(gv_Mutalisk_SpawnTrigger);
+    }
+
+    return true;
+}
+
+void MutaliskAI_Init() {
+    int lv_wave;
+
+    gv_MutaliskGroup       = UnitGroupEmpty();
+    gv_Mutalisk_WavesFired = 0;
+
+    gv_Mutalisk_SpawnTrigger = TriggerCreate("MutaliskAI_SpawnHandler");
+
+    // Register one elapsed-time event per wave: 20, 22, 24, 26, 28 minutes.
+    lv_wave = 0;
+    while (lv_wave < MUTALISK_WAVE_COUNT) {
+        TriggerAddEventTimeElapsed(gv_Mutalisk_SpawnTrigger,
+            MUTALISK_FIRST_SPAWN_TIME + IntToFixed(lv_wave) * MUTALISK_SPAWN_INTERVAL,
+            c_timeGame);
+        lv_wave += 1;
+    }
+}

@@ -1,2 +1,5 @@
+include "scripts/Spawn"
+
 void MainSetup() {
+    Spawn_Init();
 }

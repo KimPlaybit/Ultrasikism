@@ -25,7 +25,7 @@
     <!-- Protoss (Probe Build) — indexes from editor, 25% of standard build time -->
     <!-- Build01=Nexus Build02=Pylon Build03=Assimilator Build04=Gateway Build05=Forge -->
     <!-- Build06=FleetBeacon Build07=TwilightCouncil Build08=PhotonCannon Build09=None -->
-    <!-- Build10=Stargate Build11=TemplarArchives Build12=DarkShrine -->
+    <!-- Build10=Stargate Build11=TemplarArchive Build12=DarkShrine -->
     <!-- Build13=RoboticsBay Build14=RoboticsFacility Build15=CyberneticsCore -->
     <CAbilBuild id="ProtossBuild">
         <InfoArray index="Build1"  Time="17.75"/>

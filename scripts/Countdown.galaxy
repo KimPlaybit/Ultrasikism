@@ -1,0 +1,51 @@
+// Countdown timer — shows a 3-minute preparation window to all human players.
+// When it expires, UltraliskAI_Spawn() is called to release the Ultralisk.
+// Requires UltraliskAI.galaxy to be included before this file.
+
+const fixed SPAWN_COUNTDOWN_DURATION = 180.0; // 3 minutes in seconds
+
+static timer   gv_Spawn_CountdownTimer;
+static int     gv_Spawn_CountdownWindow;
+static trigger gv_Spawn_CountdownExpiredTrigger;
+
+// Called when the 3-minute countdown reaches zero.
+bool Spawn_CountdownExpired(bool testConds, bool runActions) {
+    if (!runActions) { return true; }
+
+    TimerWindowShow(gv_Spawn_CountdownWindow, PlayerGroupAll(), false);
+
+    // Spawn the Ultralisk and start its AI retarget loop.
+    UltraliskAI_Spawn();
+
+    return true;
+}
+
+void Spawn_StartCountdown() {
+    playergroup lv_activePG;
+    playergroup lv_humanPG;
+    int         lv_player;
+
+    // Build a player group of all spawned (non-12) active players.
+    lv_activePG = PlayerGroupActive();
+    lv_humanPG  = PlayerGroupEmpty();
+    lv_player   = -1;
+
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(lv_activePG, lv_player);
+        if (lv_player < 0) { break; }
+        if (lv_player == 12) { continue; }
+        PlayerGroupAdd(lv_humanPG, lv_player);
+    }
+
+    // Create and start the countdown timer.
+    gv_Spawn_CountdownTimer = TimerCreate();
+    TimerStart(gv_Spawn_CountdownTimer, SPAWN_COUNTDOWN_DURATION, false, c_timeGame);
+
+    // Show the timer window (true = count down, false = no hourglass).
+    gv_Spawn_CountdownWindow = TimerWindowCreate(gv_Spawn_CountdownTimer, StringToText("Preparation"), true, false);
+    TimerWindowShow(gv_Spawn_CountdownWindow, lv_humanPG, true);
+
+    // Register expiry handler.
+    gv_Spawn_CountdownExpiredTrigger = TriggerCreate("Spawn_CountdownExpired");
+    TriggerAddEventTimer(gv_Spawn_CountdownExpiredTrigger, gv_Spawn_CountdownTimer);
+}

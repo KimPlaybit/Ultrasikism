@@ -1,0 +1,127 @@
+// Ultralisk AI — manages escalating Ultralisk waves that hunt human players.
+//
+//  Wave 1 (t = 0 min after countdown): spawn  1 Ultralisk
+//  Wave 2 (t + 1 min):                 spawn  2 more
+//  Wave 3 (t + 2 min):                 spawn  4 more
+//  Wave 4 (t + 3 min):                 spawn  8 more  ← maximum, then stops
+//
+// All living Ultralisks retarget every 10 s when idle.
+
+const fixed ULTRALISK_WAVE_INTERVAL      = 60.0;  // seconds between escalation waves (waves 2/3/4)
+const fixed ULTRALISK_SUSTAINED_INTERVAL = 50.0; // seconds between sustained waves (wave 5+)
+const int   ULTRALISK_MAX_WAVE           = 4;     // escalation phase ends at this wave
+
+static unitgroup gv_UltraliskGroup;
+static trigger   gv_Spawn_UltraliskRetargetTrigger;
+static trigger   gv_Spawn_UltraliskWaveTrigger;
+static trigger   gv_Spawn_UltraliskSustainedTrigger;
+static int       gv_Spawn_UltraliskWave;
+
+// ─── helpers ────────────────────────────────────────────────────────────────
+
+// Spawns lp_count Ultralisks at the map center (player 12) and adds them to the group.
+void UltraliskAI_SpawnWave(int lp_count) {
+    point lv_mapCenter;
+    int   lv_i;
+
+    lv_mapCenter = PointFromId(673309917);
+    lv_i = 1;
+    while (lv_i <= lp_count) {
+        UnitCreate(1, "Ultralisk", c_unitCreateIgnorePlacement, 12, lv_mapCenter, 270.0);
+        UnitGroupAdd(gv_UltraliskGroup, UnitLastCreated());
+        lv_i += 1;
+    }
+}
+
+// Returns the start location of the first active human player, or null if none.
+// ─── triggers ───────────────────────────────────────────────────────────────
+
+// Fires every 10 s. Issues attack-move to any idle, living Ultralisk.
+bool Spawn_UltraliskRetarget(bool testConds, bool runActions) {
+    point lv_target;
+    unit  lv_ultra;
+    int   lv_i;
+    int   lv_count;
+
+    if (!runActions) { return true; }
+
+    lv_count = UnitGroupCount(gv_UltraliskGroup, c_unitCountAll);
+    if (lv_count == 0) { return true; }
+
+    lv_target = WinLose_FindTargetPoint();
+
+    lv_i = 1;
+    while (lv_i <= lv_count) {
+        lv_ultra = UnitGroupUnit(gv_UltraliskGroup, lv_i);
+        if (UnitIsAlive(lv_ultra) && UnitOrderCount(lv_ultra) == 0) {
+            UnitIssueOrder(lv_ultra,
+                OrderTargetingPoint(AbilityCommand("attack", 0), lv_target),
+                0);
+        }
+        lv_i += 1;
+    }
+
+    return true;
+}
+
+// Fires every 60 s during the escalation phase (waves 2/3/4).
+// After wave 4, switches to the sustained trigger (8 every 3 minutes forever).
+bool Spawn_UltraliskNextWave(bool testConds, bool runActions) {
+    int lv_count;
+
+    if (!runActions) { return true; }
+
+    gv_Spawn_UltraliskWave += 1;
+
+    if (gv_Spawn_UltraliskWave == 2) {
+        lv_count = 2;
+    } else if (gv_Spawn_UltraliskWave == 3) {
+        lv_count = 4;
+    } else {
+        lv_count = 8; // wave 4
+    }
+
+    UltraliskAI_SpawnWave(lv_count);
+    Spawn_UltraliskRetarget(false, true);
+
+    // Escalation phase complete — hand off to the sustained trigger.
+    if (gv_Spawn_UltraliskWave >= ULTRALISK_MAX_WAVE) {
+        TriggerDestroy(gv_Spawn_UltraliskWaveTrigger);
+        gv_Spawn_UltraliskSustainedTrigger = TriggerCreate("Spawn_UltraliskSustained");
+        TriggerAddEventTimePeriodic(gv_Spawn_UltraliskSustainedTrigger, ULTRALISK_SUSTAINED_INTERVAL, c_timeGame);
+    }
+
+    return true;
+}
+
+// Fires every 3 minutes indefinitely after wave 4. Always spawns 8 Ultralisks.
+bool Spawn_UltraliskSustained(bool testConds, bool runActions) {
+    if (!runActions) { return true; }
+
+    UltraliskAI_SpawnWave(8);
+    Spawn_UltraliskRetarget(false, true);
+
+    return true;
+}
+
+// ─── entry point ────────────────────────────────────────────────────────────
+
+// Called by Countdown.galaxy when the 3-minute timer expires.
+void UltraliskAI_Spawn() {
+    gv_UltraliskGroup      = UnitGroupEmpty();
+    gv_Spawn_UltraliskWave = 1;
+
+    // Wave 1: 1 Ultralisk immediately.
+    UltraliskAI_SpawnWave(1);
+
+    // Retarget loop — every 10 s, re-order idle Ultralisks.
+    gv_Spawn_UltraliskRetargetTrigger = TriggerCreate("Spawn_UltraliskRetarget");
+    TriggerAddEventTimePeriodic(gv_Spawn_UltraliskRetargetTrigger, 10.0, c_timeGame);
+
+    // Wave escalation — waves 2/3/4 arrive every 60 s.
+    gv_Spawn_UltraliskWaveTrigger = TriggerCreate("Spawn_UltraliskNextWave");
+    TriggerAddEventTimePeriodic(gv_Spawn_UltraliskWaveTrigger, ULTRALISK_WAVE_INTERVAL, c_timeGame);
+
+    // Issue attack orders to the first wave immediately.
+    Spawn_UltraliskRetarget(false, true);
+}

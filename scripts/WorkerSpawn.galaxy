@@ -1,0 +1,33 @@
+// Worker spawning — creates one race-appropriate worker per active human player
+// at the map center. Player 12 (computer) is excluded.
+
+void Spawn_SpawnWorkers() {
+    playergroup lv_activePG;
+    int         lv_player;
+    string      lv_workerType;
+    point       lv_mapCenter;
+
+    lv_mapCenter = PointFromId(673309917);
+    lv_activePG  = PlayerGroupActive();
+    lv_player    = -1;
+
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(lv_activePG, lv_player);
+        if (lv_player < 0) { break; }
+
+        // Skip player 12 (computer)
+        if (lv_player == 12) { continue; }
+
+        // Determine worker type based on the player's race
+        if (StringContains(PlayerRace(lv_player), "Terr", c_stringAnywhere, c_stringNoCase)) {
+            lv_workerType = "SCV";
+        } else if (StringContains(PlayerRace(lv_player), "Zerg", c_stringAnywhere, c_stringNoCase)) {
+            lv_workerType = "Drone";
+        } else {
+            lv_workerType = "Probe";
+        }
+
+        UnitCreate(1, lv_workerType, c_unitCreateIgnorePlacement, lv_player, lv_mapCenter, 270.0);
+        PlayerModifyPropertyInt(lv_player, c_playerPropMinerals, c_playerPropOperAdd, 200);
+    }
+}

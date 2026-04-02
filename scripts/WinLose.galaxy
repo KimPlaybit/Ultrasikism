@@ -1,0 +1,232 @@
+// WinLose.galaxy
+// Win condition : survive for 30 minutes.
+// Lose conditions:
+//   1. The first Nexus / Hatchery / CommandCenter a player builds is destroyed.
+//   2. A player loses all workers while having no town hall registered.
+//
+// Morphing a town hall (Hatchery→Lair→Hive, CommandCenter→OrbitalCommand/PlanetaryFortress)
+// is handled safely: the tracked reference is updated to the morphed form so the player
+// is NOT defeated for upgrading their base.
+
+const fixed WIN_CONDITION_TIME = 1800.0; // 30 minutes
+
+// Tracks each player's first town hall.  One entry per active player (not player 12).
+// Non-static so UltraliskAI / MutaliskAI can read it via WinLose_FindTargetPoint().
+unitgroup gv_PlayerTownHalls;
+
+static trigger gv_WinLose_CreatedTrigger;
+static trigger gv_WinLose_FatalDamageTrigger;
+static trigger gv_WinLose_DiedTrigger;
+static trigger gv_WinLose_WorkerDiedTrigger;
+static trigger gv_WinLose_WinTrigger;
+
+// Returns a point near any living tracked town hall, with a small random scatter
+// (0-3 units) so attackers spread out instead of stacking on one tile.
+// Falls back to map center if no town hall has been registered yet.
+point WinLose_FindTargetPoint() {
+    unit  lv_u;
+    int   lv_i;
+    int   lv_count;
+
+    lv_count = UnitGroupCount(gv_PlayerTownHalls, c_unitCountAll);
+    lv_i = 1;
+    while (lv_i <= lv_count) {
+        lv_u = UnitGroupUnit(gv_PlayerTownHalls, lv_i);
+        if (UnitIsAlive(lv_u)) {
+            return PointWithOffsetPolar(
+                UnitGetPosition(lv_u),
+                RandomFixed(0.0, 3.0),
+                RandomFixed(0.0, 360.0));
+        }
+        lv_i += 1;
+    }
+    return PointFromId(673309917); // fallback: map center
+}
+
+// Returns the tracked town hall for lv_player, or null if none is registered.
+static unit WinLose_GetPlayerTownHall(int lv_player) {
+    unit lv_u;
+    int  lv_i;
+    int  lv_count;
+
+    lv_count = UnitGroupCount(gv_PlayerTownHalls, c_unitCountAll);
+    lv_i = 1;
+    while (lv_i <= lv_count) {
+        lv_u = UnitGroupUnit(gv_PlayerTownHalls, lv_i);
+        if (UnitGetOwner(lv_u) == lv_player) { return lv_u; }
+        lv_i += 1;
+    }
+    return null;
+}
+
+// True if unitType is a starting-tier town hall (the only kind we register on first build).
+static bool WinLose_IsBaseTownHall(string unitType) {
+    return (unitType == "CommandCenter" ||
+            unitType == "Hatchery"      ||
+            unitType == "Nexus");
+}
+
+// True if unitType is any town-hall tier, including morph results.
+static bool WinLose_IsAnyTownHall(string unitType) {
+    return (unitType == "CommandCenter"     ||
+            unitType == "OrbitalCommand"    ||
+            unitType == "PlanetaryFortress" ||
+            unitType == "Hatchery"          ||
+            unitType == "Lair"              ||
+            unitType == "Hive"              ||
+            unitType == "Nexus");
+}
+
+// Fires when any unit is created on the map.
+// Records each player's FIRST base town hall.
+// Also re-registers the morph successor when a tracked building was morphed away
+// (the slot will have been cleared by WinLose_UnitDied).
+bool WinLose_UnitCreated(bool testConds, bool runActions) {
+    unit   lv_unit;
+    int    lv_player;
+    string lv_type;
+
+    if (!runActions) { return true; }
+
+    lv_unit   = EventUnit();
+    lv_player = UnitGetOwner(lv_unit);
+
+    if (lv_player == 12) { return true; }
+    if (PlayerStatus(lv_player) != c_playerStatusActive) { return true; }
+
+    lv_type = UnitGetType(lv_unit);
+
+    if (WinLose_GetPlayerTownHall(lv_player) == null) {
+        // First base-tier town hall built, OR morph successor after the slot was cleared.
+        if (WinLose_IsBaseTownHall(lv_type) || WinLose_IsAnyTownHall(lv_type)) {
+            UnitGroupAdd(gv_PlayerTownHalls, lv_unit);
+        }
+    }
+
+    return true;
+}
+
+// Fires when any unit takes LETHAL damage (right before it dies).
+// Marks the unit with custom value 1 so WinLose_UnitDied can distinguish
+// "killed by an enemy" from "consumed by a morph" (morphs do not deal damage).
+bool WinLose_FatalDamage(bool testConds, bool runActions) {
+    unit lv_unit;
+    int  lv_player;
+
+    if (!runActions) { return true; }
+
+    lv_unit   = EventUnit();
+    lv_player = UnitGetOwner(lv_unit);
+
+    if (lv_player == 12) { return true; }
+    if (!UnitGroupHasUnit(gv_PlayerTownHalls, lv_unit)) { return true; }
+
+    // Custom value slot 0: 1.0 = this unit was killed by damage.
+    UnitSetCustomValue(lv_unit, 0, 1.0);
+
+    return true;
+}
+
+// Fires when any unit dies.
+// If the dying unit is a player's tracked town hall:
+//   - Killed by damage  → defeat that player.
+//   - Died via morph    → clear the slot so WinLose_UnitCreated can register the new form.
+bool WinLose_UnitDied(bool testConds, bool runActions) {
+    unit lv_unit;
+    int  lv_player;
+
+    if (!runActions) { return true; }
+
+    lv_unit   = EventUnit();
+    lv_player = UnitGetOwner(lv_unit);
+
+    if (lv_player == 12) { return true; }
+    if (!UnitGroupHasUnit(gv_PlayerTownHalls, lv_unit)) { return true; }
+
+    // Remove from the group so the lookup returns null for this player.
+    UnitGroupRemove(gv_PlayerTownHalls, lv_unit);
+
+    if (UnitGetCustomValue(lv_unit, 0) == 1.0) {
+        // Destroyed by enemies — this player loses.
+        GameOver(lv_player, c_gameOverDefeat, true, true);
+    }
+    // else: consumed by a morph — slot is now clear so WinLose_UnitCreated
+    // will register the morph successor when it is created.
+
+    return true;
+}
+
+// True if unitType is a worker unit.
+static bool WinLose_IsWorker(string unitType) {
+    return (unitType == "SCV"   ||
+            unitType == "Probe" ||
+            unitType == "Drone");
+}
+
+// Fires when any unit dies.
+// Lose condition: a worker dies before the player has built their first town hall.
+bool WinLose_WorkerDied(bool testConds, bool runActions) {
+    unit lv_unit;
+    int  lv_player;
+
+    if (!runActions) { return true; }
+
+    lv_unit   = EventUnit();
+    lv_player = UnitGetOwner(lv_unit);
+
+    if (lv_player == 12) { return true; }
+    if (PlayerStatus(lv_player) != c_playerStatusActive) { return true; }
+    if (!WinLose_IsWorker(UnitGetType(lv_unit))) { return true; }
+
+    // Only applies before the player has built a town hall.
+    if (WinLose_GetPlayerTownHall(lv_player) != null) { return true; }
+
+    GameOver(lv_player, c_gameOverDefeat, true, true);
+    return true;
+}
+
+// Fires at the 30-minute mark.
+bool WinLose_TimerUp(bool testConds, bool runActions) {
+    int lv_player;
+
+    if (!runActions) { return true; }
+
+    lv_player = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(PlayerGroupActive(), lv_player);
+        if (lv_player < 0) { break; }
+        if (lv_player == 12) { continue; }
+
+        if (WinLose_GetPlayerTownHall(lv_player) != null &&
+            UnitIsAlive(WinLose_GetPlayerTownHall(lv_player))) {
+            GameOver(lv_player, c_gameOverVictory, true, true);
+        }
+    }
+
+    return true;
+}
+
+void WinLose_Init() {
+    gv_PlayerTownHalls = UnitGroupEmpty();
+
+    // Watch for the first town hall build per player.
+    gv_WinLose_CreatedTrigger = TriggerCreate("WinLose_UnitCreated");
+    TriggerAddEventUnitCreated(gv_WinLose_CreatedTrigger, null, "", "");
+
+    // Mark units that take lethal damage so we can distinguish kill vs. morph.
+    gv_WinLose_FatalDamageTrigger = TriggerCreate("WinLose_FatalDamage");
+    TriggerAddEventUnitDamaged(gv_WinLose_FatalDamageTrigger, null,
+        c_unitDamageTypeAny, c_unitDamageFatal, null);
+
+    // React to town hall death.
+    gv_WinLose_DiedTrigger = TriggerCreate("WinLose_UnitDied");
+    TriggerAddEventUnitDied(gv_WinLose_DiedTrigger, null);
+
+    // Secondary lose condition: last worker dies with no town hall.
+    gv_WinLose_WorkerDiedTrigger = TriggerCreate("WinLose_WorkerDied");
+    TriggerAddEventUnitDied(gv_WinLose_WorkerDiedTrigger, null);
+
+    // Win condition timer.
+    gv_WinLose_WinTrigger = TriggerCreate("WinLose_TimerUp");
+    TriggerAddEventTimeElapsed(gv_WinLose_WinTrigger, WIN_CONDITION_TIME, c_timeGame);
+}

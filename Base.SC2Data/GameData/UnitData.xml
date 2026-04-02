@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <!-- ============================================================ -->
+    <!-- All building costs set to 20% Minerals / 5% Vespene         -->
+    <!-- of standard Void.SC2Mod (LotV) multiplayer costs            -->
+    <!-- ============================================================ -->
+    <!-- TERRAN -->
+    <!-- CommandCenter: 400M 0V → 80M 0V | Food 11 → 2 -->
+    <CUnit id="CommandCenter">
+        <CostResource index="Minerals" value="80"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- OrbitalCommand: 150M 0V → 30M 0V (morph from CC) | Food 11 → 2 -->
+    <CUnit id="OrbitalCommand">
+        <CostResource index="Minerals" value="30"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- PlanetaryFortress: 150M 150V → 30M 8V (morph from CC) | Food 11 → 2 -->
+    <CUnit id="PlanetaryFortress">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+        <Food value="2"/>
+    </CUnit>
+    <CUnit id="SpineCrawlerUprooted">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <CUnit id="SporeCrawlerUprooted">
+        <CostResource index="Minerals" value="15"/>
+    </CUnit>
+    <!-- SupplyDepot: 100M 0V → 20M 0V | Food 8 → 2 -->
+    <CUnit id="SupplyDepot">
+        <CostResource index="Minerals" value="20"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- Refinery: 75M 0V → 15M 0V -->
+    <CUnit id="Refinery">
+        <CostResource index="Minerals" value="15"/>
+    </CUnit>
+    <!-- RefineryRich: 75M 0V → 15M 0V -->
+    <CUnit id="RefineryRich">
+        <CostResource index="Minerals" value="15"/>
+    </CUnit>
+    <!-- Barracks: 150M 0V → 30M 0V -->
+    <CUnit id="Barracks">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- EngineeringBay: 125M 0V → 25M 0V -->
+    <CUnit id="EngineeringBay">
+        <CostResource index="Minerals" value="25"/>
+    </CUnit>
+    <!-- MissileTurret: 100M 0V → 20M 0V -->
+    <CUnit id="MissileTurret">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <!-- Bunker: 100M 0V → 20M 0V -->
+    <CUnit id="Bunker">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <!-- SensorTower: 125M 100V → 25M 5V -->
+    <CUnit id="SensorTower">
+        <CostResource index="Minerals" value="25"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- GhostAcademy: 150M 50V → 30M 3V -->
+    <CUnit id="GhostAcademy">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- Factory: 150M 100V → 30M 5V -->
+    <CUnit id="Factory">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Starport: 150M 100V → 30M 5V -->
+    <CUnit id="Starport">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Armory: 150M 100V → 30M 5V -->
+    <CUnit id="Armory">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- FusionCore: 150M 150V → 30M 8V -->
+    <CUnit id="FusionCore">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- TechLab add-on: 50M 25V → 10M 1V -->
+    <CUnit id="TechLab">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <!-- Reactor add-on: 50M 50V → 10M 3V -->
+    <CUnit id="Reactor">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- PROTOSS -->
+    <!-- Nexus: 400M 0V → 80M 0V | Food 15 → 3 -->
+    <CUnit id="Nexus">
+        <CostResource index="Minerals" value="80"/>
+        <Food value="3"/>
+    </CUnit>
+    <!-- Pylon: 100M 0V → 20M 0V | Food 8 → 2 -->
+    <CUnit id="Pylon">
+        <CostResource index="Minerals" value="20"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- Assimilator: 75M 0V → 15M 0V -->
+    <CUnit id="Assimilator">
+        <CostResource index="Minerals" value="15"/>
+    </CUnit>
+    <!-- AssimilatorRich: 75M 0V → 15M 0V -->
+    <CUnit id="AssimilatorRich">
+        <CostResource index="Minerals" value="15"/>
+    </CUnit>
+    <!-- Gateway: 150M 0V → 30M 0V -->
+    <CUnit id="Gateway">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- Forge: 150M 0V → 30M 0V -->
+    <CUnit id="Forge">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- CyberneticsCore: 150M 0V → 30M 0V -->
+    <CUnit id="CyberneticsCore">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- TwilightCouncil: 150M 100V → 30M 5V -->
+    <CUnit id="TwilightCouncil">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- TemplarArchive: 150M 200V → 30M 10V -->
+    <CUnit id="TemplarArchive">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- DarkShrine: 150M 150V → 30M 8V -->
+    <CUnit id="DarkShrine">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- PhotonCannon: 150M 0V → 30M 0V -->
+    <CUnit id="PhotonCannon">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- RoboticsFacility: 150M 100V → 30M 5V -->
+    <CUnit id="RoboticsFacility">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- RoboticsBay: 150M 150V → 30M 8V -->
+    <CUnit id="RoboticsBay">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- Stargate: 150M 100V → 30M 5V -->
+    <CUnit id="Stargate">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- FleetBeacon: 300M 200V → 60M 10V -->
+    <CUnit id="FleetBeacon">
+        <CostResource index="Minerals" value="60"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- ShieldBattery: 100M 0V → 20M 0V -->
+    <CUnit id="ShieldBattery">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <!-- ZERG -->
+    <!-- Hatchery: 300M 0V → 60M 0V | Food 6 → 1 -->
+    <CUnit id="Hatchery">
+        <CostResource index="Minerals" value="60"/>
+        <Food value="1"/>
+    </CUnit>
+    <!-- Lair: 150M 100V → 30M 5V (morph from Hatchery) | Food 6 → 1 -->
+    <CUnit id="Lair">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+        <Food value="1"/>
+    </CUnit>
+    <!-- Hive: 200M 150V → 40M 8V (morph from Lair) | Food 6 → 1 -->
+    <CUnit id="Hive">
+        <CostResource index="Minerals" value="40"/>
+        <CostResource index="Vespene" value="8"/>
+        <Food value="1"/>
+    </CUnit>
+    <!-- Extractor: 25M 0V → 5M 0V -->
+    <CUnit id="Extractor">
+        <CostResource index="Minerals" value="5"/>
+    </CUnit>
+    <!-- ExtractorRich: 25M 0V → 5M 0V -->
+    <CUnit id="ExtractorRich">
+        <CostResource index="Minerals" value="5"/>
+    </CUnit>
+    <!-- SpawningPool: 200M 0V → 40M 0V -->
+    <CUnit id="SpawningPool">
+        <CostResource index="Minerals" value="40"/>
+    </CUnit>
+    <!-- EvolutionChamber: 75M 0V → 15M 0V -->
+    <CUnit id="EvolutionChamber">
+        <CostResource index="Minerals" value="15"/>
+    </CUnit>
+    <!-- BanelingNest: 100M 50V → 20M 3V -->
+    <CUnit id="BanelingNest">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- RoachWarren: 150M 0V → 30M 0V -->
+    <CUnit id="RoachWarren">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- HydraliskDen: 100M 100V → 20M 5V -->
+    <CUnit id="HydraliskDen">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- InfestationPit: 100M 100V → 20M 5V -->
+    <CUnit id="InfestationPit">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Spire: 200M 200V → 40M 10V -->
+    <CUnit id="Spire">
+        <CostResource index="Minerals" value="40"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- GreaterSpire: 100M 150V → 20M 8V (morph from Spire) -->
+    <CUnit id="GreaterSpire">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- UltraliskCavern: 150M 200V → 30M 10V -->
+    <CUnit id="UltraliskCavern">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- NydusNetwork: 150M 200V → 30M 10V -->
+    <CUnit id="NydusNetwork">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- NydusCanal (Nydus Worm exit): 50M 0V → 10M 0V -->
+    <CUnit id="NydusCanal">
+        <CostResource index="Minerals" value="10"/>
+    </CUnit>
+    <!-- SpineCrawler: 100M 0V → 20M 0V -->
+    <CUnit id="SpineCrawler">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <!-- SporeCrawler: 75M 0V → 15M 0V -->
+    <CUnit id="SporeCrawler">
+        <CostResource index="Minerals" value="15"/>
+    </CUnit>
+    <!-- LurkerDen: 150M 150V → 30M 8V -->
+    <CUnit id="LurkerDen">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- ============================================================ -->
+    <!-- TERRAN UNITS — 20% Minerals / 5% Vespene                    -->
+    <!-- ============================================================ -->
+    <!-- SCV: 50M 0V → 10M 0V -->
+    <CUnit id="SCV">
+        <CostResource index="Minerals" value="10"/>
+    </CUnit>
+    <!-- Marine: 50M 0V → 10M 0V -->
+    <CUnit id="Marine">
+        <CostResource index="Minerals" value="10"/>
+    </CUnit>
+    <!-- Marauder: 100M 25V → 20M 1V -->
+    <CUnit id="Marauder">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <!-- Reaper: 50M 50V → 10M 3V -->
+    <CUnit id="Reaper">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- Ghost: 150M 125V → 30M 6V -->
+    <CUnit id="Ghost">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="6"/>
+    </CUnit>
+    <!-- Hellion: 100M 0V → 20M 0V -->
+    <CUnit id="Hellion">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <!-- Hellbat: 100M 0V → 20M 0V -->
+    <CUnit id="Hellbat">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <!-- WidowMine: 75M 25V → 15M 1V -->
+    <CUnit id="WidowMine">
+        <CostResource index="Minerals" value="15"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <!-- SiegeTank: 150M 125V → 30M 6V -->
+    <CUnit id="SiegeTank">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="6"/>
+    </CUnit>
+    <!-- Cyclone: 150M 100V → 30M 5V -->
+    <CUnit id="Cyclone">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Thor: 300M 200V → 60M 10V -->
+    <CUnit id="Thor">
+        <CostResource index="Minerals" value="60"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- Medivac: 100M 100V → 20M 5V -->
+    <CUnit id="Medivac">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Viking: 150M 75V → 30M 4V -->
+    <CUnit id="Viking">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="4"/>
+    </CUnit>
+    <!-- Liberator: 150M 150V → 30M 8V -->
+    <CUnit id="Liberator">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- Raven: 100M 200V → 20M 10V -->
+    <CUnit id="Raven">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- Banshee: 150M 100V → 30M 5V -->
+    <CUnit id="Banshee">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Battlecruiser: 400M 300V → 80M 15V -->
+    <CUnit id="Battlecruiser">
+        <CostResource index="Minerals" value="80"/>
+        <CostResource index="Vespene" value="15"/>
+    </CUnit>
+    <!-- ============================================================ -->
+    <!-- PROTOSS UNITS — 20% Minerals / 5% Vespene                   -->
+    <!-- ============================================================ -->
+    <!-- Probe: 50M 0V → 10M 0V -->
+    <CUnit id="Probe">
+        <CostResource index="Minerals" value="10"/>
+    </CUnit>
+    <!-- Zealot: 100M 0V → 20M 0V -->
+    <CUnit id="Zealot">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
+    <!-- Stalker: 125M 50V → 25M 3V -->
+    <CUnit id="Stalker">
+        <CostResource index="Minerals" value="25"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- Sentry: 50M 100V → 10M 5V -->
+    <CUnit id="Sentry">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Adept: 100M 25V → 20M 1V -->
+    <CUnit id="Adept">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <!-- HighTemplar: 50M 150V → 10M 8V -->
+    <CUnit id="HighTemplar">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- DarkTemplar: 125M 125V → 25M 6V -->
+    <CUnit id="DarkTemplar">
+        <CostResource index="Minerals" value="25"/>
+        <CostResource index="Vespene" value="6"/>
+    </CUnit>
+    <!-- Immortal: 275M 100V → 55M 5V -->
+    <CUnit id="Immortal">
+        <CostResource index="Minerals" value="55"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Colossus: 300M 200V → 60M 10V -->
+    <CUnit id="Colossus">
+        <CostResource index="Minerals" value="60"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- Disruptor: 150M 150V → 30M 8V -->
+    <CUnit id="Disruptor">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- Observer: 25M 75V → 5M 4V -->
+    <CUnit id="Observer">
+        <CostResource index="Minerals" value="5"/>
+        <CostResource index="Vespene" value="4"/>
+    </CUnit>
+    <!-- WarpPrism: 200M 0V → 40M 0V -->
+    <CUnit id="WarpPrism">
+        <CostResource index="Minerals" value="40"/>
+    </CUnit>
+    <!-- Phoenix: 150M 100V → 30M 5V -->
+    <CUnit id="Phoenix">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Oracle: 150M 150V → 30M 8V -->
+    <CUnit id="Oracle">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- VoidRay: 250M 150V → 50M 8V -->
+    <CUnit id="VoidRay">
+        <CostResource index="Minerals" value="50"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- Carrier: 350M 250V → 70M 13V -->
+    <CUnit id="Carrier">
+        <CostResource index="Minerals" value="70"/>
+        <CostResource index="Vespene" value="13"/>
+    </CUnit>
+    <!-- Tempest: 250M 175V → 50M 9V -->
+    <CUnit id="Tempest">
+        <CostResource index="Minerals" value="50"/>
+        <CostResource index="Vespene" value="9"/>
+    </CUnit>
+    <!-- Mothership: 400M 400V → 80M 20V -->
+    <CUnit id="Mothership">
+        <CostResource index="Minerals" value="80"/>
+        <CostResource index="Vespene" value="20"/>
+    </CUnit>
+    <!-- ============================================================ -->
+    <!-- ZERG UNITS — 20% Minerals / 5% Vespene                      -->
+    <!-- ============================================================ -->
+    <!-- Drone: 50M 0V → 10M 0V -->
+    <CUnit id="Drone">
+        <CostResource index="Minerals" value="10"/>
+    </CUnit>
+    <!-- Overlord: 100M 0V → 20M 0V | Food 8 → 2 -->
+    <CUnit id="Overlord">
+        <CostResource index="Minerals" value="20"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- Queen: 150M 0V → 30M 0V -->
+    <CUnit id="Queen">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- Zergling: 25M 0V → 5M 0V (50M total spawns 2) -->
+    <CUnit id="Zergling">
+        <CostResource index="Minerals" value="5"/>
+    </CUnit>
+    <!-- Baneling: 25M 25V → 5M 1V (morph from Zergling) -->
+    <CUnit id="Baneling">
+        <CostResource index="Minerals" value="5"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <!-- Roach: 75M 25V → 15M 1V -->
+    <CUnit id="Roach">
+        <CostResource index="Minerals" value="15"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <!-- Ravager: 25M 75V → 5M 4V (morph from Roach) -->
+    <CUnit id="Ravager">
+        <CostResource index="Minerals" value="5"/>
+        <CostResource index="Vespene" value="4"/>
+    </CUnit>
+    <!-- Hydralisk: 100M 50V → 20M 3V -->
+    <CUnit id="Hydralisk">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- Lurker: 50M 100V → 10M 5V (morph from Hydralisk) -->
+    <CUnit id="Lurker">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Infestor: 100M 150V → 20M 8V -->
+    <CUnit id="Infestor">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- SwarmHost: 100M 75V → 20M 4V -->
+    <CUnit id="SwarmHost">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="4"/>
+    </CUnit>
+    <!-- Mutalisk: 100M 100V → 20M 5V -->
+    <CUnit id="Mutalisk">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- Corruptor: 150M 100V → 30M 5V -->
+    <CUnit id="Corruptor">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- BroodLord: 150M 150V → 30M 8V (morph from Corruptor) -->
+    <CUnit id="BroodLord">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="8"/>
+    </CUnit>
+    <!-- Ultralisk: 300M 200V → 60M 10V -->
+    <CUnit id="Ultralisk">
+        <CostResource index="Minerals" value="60"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- Viper: 100M 200V → 20M 10V -->
+    <CUnit id="Viper">
+        <CostResource index="Minerals" value="20"/>
+        <CostResource index="Vespene" value="10"/>
+    </CUnit>
+    <!-- Overseer: 50M 100V → 10M 5V (morph from Overlord) | Food 8 → 2 -->
+    <CUnit id="Overseer">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="5"/>
+        <Food value="2"/>
+    </CUnit>
+</Catalog>

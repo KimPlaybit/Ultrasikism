@@ -1,0 +1,14 @@
+// Spawn coordinator — includes all spawn-related modules in dependency order.
+
+include "scripts/WorkerSpawn"
+include "scripts/WinLose"       // must precede UltraliskAI — provides WinLose_FindTargetPoint
+include "scripts/UltraliskAI"
+include "scripts/MutaliskAI"
+include "scripts/Countdown"
+
+void Spawn_Init() {
+    Spawn_SpawnWorkers();
+    Spawn_StartCountdown();
+    MutaliskAI_Init();
+    WinLose_Init();
+}

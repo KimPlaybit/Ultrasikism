@@ -14,13 +14,14 @@
         <InfoArray index="Train3" Time="2.9"/>   <!-- Ghost: 29s → 2.9s -->
         <InfoArray index="Train4" Time="3.0"/>   <!-- Marauder: 30s → 3.0s -->
     </CAbilTrain>
-    <!-- Factory — Train02=SiegeTank Train05=Thor Train06=Hellion Train07=Hellbat Train08=Cyclone -->
+    <!-- Factory — Train02=SiegeTank Train05=Thor Train06=Hellion Train07=Hellbat Train08=Cyclone Train25=WidowMine -->
     <CAbilTrain id="FactoryTrain">
-        <InfoArray index="Train2" Time="3.2"/>   <!-- Siege Tank: 32s → 3.2s -->
-        <InfoArray index="Train5" Time="6.0"/>   <!-- Thor: 60s → 6.0s -->
-        <InfoArray index="Train6" Time="3.0"/>   <!-- Hellion: 30s → 3.0s -->
-        <InfoArray index="Train7" Time="3.0"/>   <!-- Hellbat: 30s → 3.0s -->
-        <InfoArray index="Train8" Time="3.6"/>   <!-- Cyclone: 36s → 3.6s -->
+        <InfoArray index="Train2"  Time="3.2"/>   <!-- Siege Tank: 32s → 3.2s -->
+        <InfoArray index="Train5"  Time="6.0"/>   <!-- Thor: 60s → 6.0s -->
+        <InfoArray index="Train6"  Time="3.0"/>   <!-- Hellion: 30s → 3.0s -->
+        <InfoArray index="Train7"  Time="3.0"/>   <!-- Hellbat: 30s → 3.0s -->
+        <InfoArray index="Train8"  Time="3.6"/>   <!-- Cyclone: 36s → 3.6s -->
+        <InfoArray index="Train25" Time="4.0"/>   <!-- Widow Mine: 40s → 4.0s -->
     </CAbilTrain>
     <!-- Starport — Train01=Medivac Train02=Banshee Train03=Raven Train04=Battlecruiser Train05=Viking Train07=Liberator -->
     <CAbilTrain id="StarportTrain">

@@ -10,14 +10,14 @@
         <CostResource index="Minerals" value="80"/>
         <Food value="2"/>
     </CUnit>
-    <!-- OrbitalCommand: 150M 0V → 30M 0V (morph from CC) | Food 11 → 2 -->
+    <!-- OrbitalCommand: morph cost 150M 0V → 30M 0V; total = CC(80M) + upgrade(30M) = 110M | Food 11 → 2 -->
     <CUnit id="OrbitalCommand">
-        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Minerals" value="110"/>
         <Food value="2"/>
     </CUnit>
-    <!-- PlanetaryFortress: 150M 150V → 30M 8V (morph from CC) | Food 11 → 2 -->
+    <!-- PlanetaryFortress: morph cost 150M 150V → 30M 8V; total = CC(80M)+upgrade(30M) = 110M, 0+8 = 8V | Food 11 → 2 -->
     <CUnit id="PlanetaryFortress">
-        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Minerals" value="110"/>
         <CostResource index="Vespene" value="8"/>
         <Food value="2"/>
     </CUnit>
@@ -29,6 +29,11 @@
     </CUnit>
     <!-- SupplyDepot: 100M 0V → 20M 0V | Food 8 → 2 -->
     <CUnit id="SupplyDepot">
+        <CostResource index="Minerals" value="20"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- SupplyDepotLowered: lowered state variant, must match SupplyDepot -->
+    <CUnit id="SupplyDepotLowered">
         <CostResource index="Minerals" value="20"/>
         <Food value="2"/>
     </CUnit>
@@ -91,10 +96,65 @@
         <CostResource index="Minerals" value="10"/>
         <CostResource index="Vespene" value="1"/>
     </CUnit>
+    <!-- Building-specific TechLab variants — must match TechLab -->
+    <CUnit id="BarracksTechLab">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <CUnit id="FactoryTechLab">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
+    <CUnit id="StarportTechLab">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="1"/>
+    </CUnit>
     <!-- Reactor add-on: 50M 50V → 10M 3V -->
     <CUnit id="Reactor">
         <CostResource index="Minerals" value="10"/>
         <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- Building-specific Reactor variants — must match Reactor -->
+    <CUnit id="BarracksReactor">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <CUnit id="FactoryReactor">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <CUnit id="StarportReactor">
+        <CostResource index="Minerals" value="10"/>
+        <CostResource index="Vespene" value="3"/>
+    </CUnit>
+    <!-- ============================================================ -->
+    <!-- TERRAN FLYING FORMS — must match grounded cost               -->
+    <!-- Barracks/Factory/Starport/CC/OC all have a Flying CUnit ID  -->
+    <!-- PlanetaryFortress cannot lift off and has no Flying variant  -->
+    <!-- ============================================================ -->
+    <!-- CommandCenterFlying: matches CommandCenter 80M 0V | Food 11 → 2 -->
+    <CUnit id="CommandCenterFlying">
+        <CostResource index="Minerals" value="80"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- OrbitalCommandFlying: matches OrbitalCommand total 110M 0V | Food 11 → 2 -->
+    <CUnit id="OrbitalCommandFlying">
+        <CostResource index="Minerals" value="110"/>
+        <Food value="2"/>
+    </CUnit>
+    <!-- BarracksFlying: matches Barracks 30M 0V -->
+    <CUnit id="BarracksFlying">
+        <CostResource index="Minerals" value="30"/>
+    </CUnit>
+    <!-- FactoryFlying: matches Factory 30M 5V -->
+    <CUnit id="FactoryFlying">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
+    </CUnit>
+    <!-- StarportFlying: matches Starport 30M 5V -->
+    <CUnit id="StarportFlying">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="5"/>
     </CUnit>
     <!-- PROTOSS -->
     <!-- Nexus: 400M 0V → 80M 0V | Food 15 → 3 -->
@@ -176,16 +236,16 @@
         <CostResource index="Minerals" value="60"/>
         <Food value="1"/>
     </CUnit>
-    <!-- Lair: 150M 100V → 30M 5V (morph from Hatchery) | Food 6 → 1 -->
+    <!-- Lair: 150M 100V → 30M 5V (morph from Hatchery); total = Hatchery(60M) + upgrade(30M/5V) = 90M/5V | Food 6 → 1 -->
     <CUnit id="Lair">
-        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Minerals" value="90"/>
         <CostResource index="Vespene" value="5"/>
         <Food value="1"/>
     </CUnit>
-    <!-- Hive: 200M 150V → 40M 8V (morph from Lair) | Food 6 → 1 -->
+    <!-- Hive: 200M 150V → 40M 8V (morph from Lair); total = Lair(90M/5V) + upgrade(40M/8V) = 130M/13V | Food 6 → 1 -->
     <CUnit id="Hive">
-        <CostResource index="Minerals" value="40"/>
-        <CostResource index="Vespene" value="8"/>
+        <CostResource index="Minerals" value="130"/>
+        <CostResource index="Vespene" value="13"/>
         <Food value="1"/>
     </CUnit>
     <!-- Extractor: 25M 0V → 5M 0V -->
@@ -228,10 +288,10 @@
         <CostResource index="Minerals" value="40"/>
         <CostResource index="Vespene" value="10"/>
     </CUnit>
-    <!-- GreaterSpire: 100M 150V → 20M 8V (morph from Spire) -->
+    <!-- GreaterSpire: 100M 150V → 20M 8V (morph from Spire); total = Spire(40M/10V) + upgrade(20M/8V) = 60M/18V -->
     <CUnit id="GreaterSpire">
-        <CostResource index="Minerals" value="20"/>
-        <CostResource index="Vespene" value="8"/>
+        <CostResource index="Minerals" value="60"/>
+        <CostResource index="Vespene" value="18"/>
     </CUnit>
     <!-- UltraliskCavern: 150M 200V → 30M 10V -->
     <CUnit id="UltraliskCavern">

@@ -18,7 +18,6 @@ static trigger gv_WinLose_CreatedTrigger;
 static trigger gv_WinLose_FatalDamageTrigger;
 static trigger gv_WinLose_DiedTrigger;
 static trigger gv_WinLose_WorkerDiedTrigger;
-static trigger gv_WinLose_WinTrigger;
 
 // Returns a point near any living tracked town hall, with a small random scatter
 // (0-3 units) so attackers spread out instead of stacking on one tile.
@@ -226,7 +225,6 @@ void WinLose_Init() {
     gv_WinLose_WorkerDiedTrigger = TriggerCreate("WinLose_WorkerDied");
     TriggerAddEventUnitDied(gv_WinLose_WorkerDiedTrigger, null);
 
-    // Win condition timer.
-    gv_WinLose_WinTrigger = TriggerCreate("WinLose_TimerUp");
-    TriggerAddEventTimeElapsed(gv_WinLose_WinTrigger, WIN_CONDITION_TIME, c_timeGame);
+    // Win condition is driven by the 27-minute countdown started in Countdown.galaxy
+    // (Spawn_WinCountdownExpired calls WinLose_TimerUp when time runs out).
 }

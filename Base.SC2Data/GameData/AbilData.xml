@@ -1,41 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <!-- ============================================================ -->
+    <!-- TERRAN TRAINING — 10% of standard training time              -->
+    <!-- ============================================================ -->
+    <!-- CommandCenter/OrbitalCommand/PlanetaryFortress — Train01=SCV -->
+    <CAbilTrain id="CommandCenterTrain">
+        <InfoArray index="Train1" Time="1.7"/>   <!-- SCV: 17s → 1.7s -->
+    </CAbilTrain>
+    <!-- Barracks — Train01=Marine Train02=Reaper Train03=Ghost Train04=Marauder -->
+    <CAbilTrain id="BarracksTrain">
+        <InfoArray index="Train1" Time="2.5"/>   <!-- Marine: 25s → 2.5s -->
+        <InfoArray index="Train2" Time="3.2"/>   <!-- Reaper: 32s → 3.2s -->
+        <InfoArray index="Train3" Time="2.9"/>   <!-- Ghost: 29s → 2.9s -->
+        <InfoArray index="Train4" Time="3.0"/>   <!-- Marauder: 30s → 3.0s -->
+    </CAbilTrain>
+    <!-- Factory — Train02=SiegeTank Train05=Thor Train06=Hellion Train07=Hellbat Train08=Cyclone -->
+    <CAbilTrain id="FactoryTrain">
+        <InfoArray index="Train2" Time="3.2"/>   <!-- Siege Tank: 32s → 3.2s -->
+        <InfoArray index="Train5" Time="6.0"/>   <!-- Thor: 60s → 6.0s -->
+        <InfoArray index="Train6" Time="3.0"/>   <!-- Hellion: 30s → 3.0s -->
+        <InfoArray index="Train7" Time="3.0"/>   <!-- Hellbat: 30s → 3.0s -->
+        <InfoArray index="Train8" Time="3.6"/>   <!-- Cyclone: 36s → 3.6s -->
+    </CAbilTrain>
+    <!-- Starport — Train01=Medivac Train02=Banshee Train03=Raven Train04=Battlecruiser Train05=Viking Train07=Liberator -->
+    <CAbilTrain id="StarportTrain">
+        <InfoArray index="Train1" Time="3.0"/>   <!-- Medivac: 30s → 3.0s -->
+        <InfoArray index="Train2" Time="4.3"/>   <!-- Banshee: 43s → 4.3s -->
+        <InfoArray index="Train3" Time="4.3"/>   <!-- Raven: 43s → 4.3s -->
+        <InfoArray index="Train4" Time="9.0"/>   <!-- Battlecruiser: 90s → 9.0s -->
+        <InfoArray index="Train5" Time="3.2"/>   <!-- Viking: 32s → 3.2s -->
+        <InfoArray index="Train7" Time="4.3"/>   <!-- Liberator: 43s → 4.3s -->
+    </CAbilTrain>
+    <!-- ============================================================ -->
+    <!-- PROTOSS TRAINING — 25% of standard training time             -->
+    <!-- ============================================================ -->
+    <!-- Nexus — Train01=Probe -->
+    <CAbilTrain id="NexusTrain">
+        <InfoArray index="Train1" Time="4.25"/>  <!-- Probe: 17s → 4.25s -->
+    </CAbilTrain>
+    <!-- Gateway (normal training) — Train01=Zealot Train02=Stalker Train04=HighTemplar Train05=DarkTemplar Train06=Sentry Train07=Adept -->
+    <CAbilTrain id="GatewayTrain">
+        <InfoArray index="Train1" Time="9.5"/>   <!-- Zealot: 38s → 9.5s -->
+        <InfoArray index="Train2" Time="10.5"/>  <!-- Stalker: 42s → 10.5s -->
+        <InfoArray index="Train4" Time="13.75"/> <!-- High Templar: 55s → 13.75s -->
+        <InfoArray index="Train5" Time="13.75"/> <!-- Dark Templar: 55s → 13.75s -->
+        <InfoArray index="Train6" Time="10.5"/>  <!-- Sentry: 42s → 10.5s -->
+        <InfoArray index="Train7" Time="10.0"/>  <!-- Adept: 40s → 10.0s -->
+    </CAbilTrain>
+    <!-- WarpGate warp-in (mirrors GatewayTrain slots) -->
+    <CAbilTrain id="WarpGateTrain">
+        <InfoArray index="Train1" Time="9.5"/>   <!-- Zealot: 38s → 9.5s -->
+        <InfoArray index="Train2" Time="10.5"/>  <!-- Stalker: 42s → 10.5s -->
+        <InfoArray index="Train4" Time="13.75"/> <!-- High Templar: 55s → 13.75s -->
+        <InfoArray index="Train5" Time="13.75"/> <!-- Dark Templar: 55s → 13.75s -->
+        <InfoArray index="Train6" Time="10.5"/>  <!-- Sentry: 42s → 10.5s -->
+        <InfoArray index="Train7" Time="10.0"/>  <!-- Adept: 40s → 10.0s -->
+    </CAbilTrain>
+    <!-- Robotics Facility — Train01=WarpPrism Train02=Observer Train03=Colossus Train04=Immortal -->
+    <CAbilTrain id="RoboticsFacilityTrain">
+        <InfoArray index="Train1" Time="9.0"/>   <!-- Warp Prism: 36s → 9.0s -->
+        <InfoArray index="Train2" Time="5.25"/>  <!-- Observer: 21s → 5.25s -->
+        <InfoArray index="Train3" Time="13.5"/>  <!-- Colossus: 54s → 13.5s -->
+        <InfoArray index="Train4" Time="9.75"/>  <!-- Immortal: 39s → 9.75s -->
+    </CAbilTrain>
+    <!-- Stargate — Train01=Phoenix Train03=Carrier Train05=VoidRay Train09=Oracle Train10=Tempest -->
+    <CAbilTrain id="StargateTrain">
+        <InfoArray index="Train1"  Time="8.75"/>  <!-- Phoenix: 35s → 8.75s -->
+        <InfoArray index="Train3"  Time="21.5"/>  <!-- Carrier: 86s → 21.5s -->
+        <InfoArray index="Train5"  Time="10.75"/> <!-- Void Ray: 43s → 10.75s -->
+        <InfoArray index="Train9"  Time="9.25"/>  <!-- Oracle: 37s → 9.25s -->
+        <InfoArray index="Train10" Time="13.5"/>  <!-- Tempest: 54s → 13.5s -->
+    </CAbilTrain>
+    <!-- ============================================================ -->
+    <!-- ZERG TRAINING (Larva morphs) — 15% of standard training time -->
+    <!-- ============================================================ -->
+    <!-- LarvaWormhole — Train01=Drone Train02=Zergling Train03=Overlord Train04=Hydralisk -->
+    <!-- Train05=Mutalisk Train07=Ultralisk Train10=Roach Train11=Infestor -->
+    <!-- Train12=Corruptor Train13=Viper Train15=SwarmHost -->
+    <CAbilTrain id="LarvaWormhole">
+        <InfoArray index="Train1"  Time="2.55"/> <!-- Drone: 17s → 2.55s -->
+        <InfoArray index="Train2"  Time="3.6"/>  <!-- Zergling: 24s → 3.6s -->
+        <InfoArray index="Train3"  Time="3.75"/> <!-- Overlord: 25s → 3.75s -->
+        <InfoArray index="Train4"  Time="4.95"/> <!-- Hydralisk: 33s → 4.95s -->
+        <InfoArray index="Train5"  Time="4.95"/> <!-- Mutalisk: 33s → 4.95s -->
+        <InfoArray index="Train7"  Time="8.25"/> <!-- Ultralisk: 55s → 8.25s -->
+        <InfoArray index="Train10" Time="4.05"/> <!-- Roach: 27s → 4.05s -->
+        <InfoArray index="Train11" Time="7.5"/>  <!-- Infestor: 50s → 7.5s -->
+        <InfoArray index="Train12" Time="6.0"/>  <!-- Corruptor: 40s → 6.0s -->
+        <InfoArray index="Train13" Time="6.0"/>  <!-- Viper: 40s → 6.0s -->
+        <InfoArray index="Train15" Time="5.4"/>  <!-- Swarm Host: 36s → 5.4s -->
+    </CAbilTrain>
     <!-- Terran (SCV Build) — indexes from editor, 25% of standard build time -->
     <!-- Build01=CommandCenter Build02=SupplyDepot Build03=Refinery Build04=Barracks -->
     <!-- Build05=EngineeringBay Build06=MissileTurret Build07=Bunker Build08=Refinery(Rich) -->
     <!-- Build09=SensorTower Build10=GhostAcademy Build11=Factory Build12=Starport -->
     <!-- Build13=None Build14=Armory Build15=None Build16=FusionCore -->
     <CAbilBuild id="TerranBuild">
-        <InfoArray index="Build1"  Time="17.75"/>
-        <InfoArray index="Build2"  Time="5.25"/>
-        <InfoArray index="Build3"  Time="5.25"/>
-        <InfoArray index="Build4"  Time="11.5"/>
-        <InfoArray index="Build5"  Time="6.25"/>
-        <InfoArray index="Build6"  Time="4.5"/>
-        <InfoArray index="Build7"  Time="7.25"/>
-        <InfoArray index="Build8"  Time="5.25"/>
-        <InfoArray index="Build9"  Time="4.5"/>
+        <InfoArray index="Build1" Time="17.75"/>
+        <InfoArray index="Build2" Time="5.25"/>
+        <InfoArray index="Build3" Time="5.25"/>
+        <InfoArray index="Build4" Time="11.5"/>
+        <InfoArray index="Build5" Time="6.25"/>
+        <InfoArray index="Build6" Time="4.5"/>
+        <InfoArray index="Build7" Time="7.25"/>
+        <InfoArray index="Build8" Time="5.25"/>
+        <InfoArray index="Build9" Time="4.5"/>
         <InfoArray index="Build10" Time="7.25"/>
         <InfoArray index="Build11" Time="10.75"/>
         <InfoArray index="Build12" Time="9"/>
         <InfoArray index="Build14" Time="11.5"/>
         <InfoArray index="Build16" Time="11.5"/>
     </CAbilBuild>
-
     <!-- Protoss (Probe Build) — indexes from editor, 25% of standard build time -->
     <!-- Build01=Nexus Build02=Pylon Build03=Assimilator Build04=Gateway Build05=Forge -->
     <!-- Build06=FleetBeacon Build07=TwilightCouncil Build08=PhotonCannon Build09=None -->
     <!-- Build10=Stargate Build11=TemplarArchive Build12=DarkShrine -->
     <!-- Build13=RoboticsBay Build14=RoboticsFacility Build15=CyberneticsCore -->
     <CAbilBuild id="ProtossBuild">
-        <InfoArray index="Build1"  Time="17.75"/>
-        <InfoArray index="Build2"  Time="1.25"/>
-        <InfoArray index="Build3"  Time="5.25"/>
-        <InfoArray index="Build4"  Time="11.5"/>
-        <InfoArray index="Build5"  Time="6.25"/>
-        <InfoArray index="Build6"  Time="10.75"/>
-        <InfoArray index="Build7"  Time="9"/>
-        <InfoArray index="Build8"  Time="7.25"/>
+        <InfoArray index="Build1" Time="17.75"/>
+        <InfoArray index="Build2" Time="1.25"/>
+        <InfoArray index="Build3" Time="5.25"/>
+        <InfoArray index="Build4" Time="11.5"/>
+        <InfoArray index="Build5" Time="6.25"/>
+        <InfoArray index="Build6" Time="10.75"/>
+        <InfoArray index="Build7" Time="9"/>
+        <InfoArray index="Build8" Time="7.25"/>
         <InfoArray index="Build10" Time="10.75"/>
         <InfoArray index="Build11" Time="9"/>
         <InfoArray index="Build12" Time="25"/>
@@ -43,22 +132,21 @@
         <InfoArray index="Build14" Time="11.5"/>
         <InfoArray index="Build15" Time="9"/>
     </CAbilBuild>
-
     <!-- Zerg (Drone Build) — indexes from editor, 25% of standard build time -->
     <!-- Build01=Hatchery Build02=CreepTumor Build03=Extractor Build04=SpawningPool -->
     <!-- Build05=EvolutionChamber Build06=HydraliskDen Build07=Spire Build08=UltraliskCavern -->
     <!-- Build09=InfestationPit Build10=NydusNetwork Build11=BanelingNest -->
     <!-- Build12-13=None Build14=RoachWarren Build15=SpineCrawler Build16=SporeCrawler -->
     <CAbilBuild id="ZergBuild">
-        <InfoArray index="Build1"  Time="17.75"/>
-        <InfoArray index="Build2"  Time="3.75"/>
-        <InfoArray index="Build3"  Time="5.25"/>
-        <InfoArray index="Build4"  Time="11.5"/>
-        <InfoArray index="Build5"  Time="6.25"/>
-        <InfoArray index="Build6"  Time="8.25"/>
-        <InfoArray index="Build7"  Time="17.75"/>
-        <InfoArray index="Build8"  Time="11.5"/>
-        <InfoArray index="Build9"  Time="9"/>
+        <InfoArray index="Build1" Time="17.75"/>
+        <InfoArray index="Build2" Time="3.75"/>
+        <InfoArray index="Build3" Time="5.25"/>
+        <InfoArray index="Build4" Time="11.5"/>
+        <InfoArray index="Build5" Time="6.25"/>
+        <InfoArray index="Build6" Time="8.25"/>
+        <InfoArray index="Build7" Time="17.75"/>
+        <InfoArray index="Build8" Time="11.5"/>
+        <InfoArray index="Build9" Time="9"/>
         <InfoArray index="Build10" Time="9"/>
         <InfoArray index="Build11" Time="10.75"/>
         <InfoArray index="Build14" Time="9.75"/>

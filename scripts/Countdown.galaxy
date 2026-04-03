@@ -2,20 +2,61 @@
 // When it expires, UltraliskAI_Spawn() is called to release the Ultralisk.
 // Requires UltraliskAI.galaxy to be included before this file.
 
-const fixed SPAWN_COUNTDOWN_DURATION = 180.0; // 3 minutes in seconds
+const fixed SPAWN_COUNTDOWN_DURATION = 180.0;  // 3 minutes in seconds
+const fixed WIN_COUNTDOWN_DURATION    = 1620.0; // 27 minutes in seconds
 
 static timer   gv_Spawn_CountdownTimer;
 static int     gv_Spawn_CountdownWindow;
 static trigger gv_Spawn_CountdownExpiredTrigger;
 
+static timer   gv_Win_CountdownTimer;
+static int     gv_Win_CountdownWindow;
+static trigger gv_Win_CountdownExpiredTrigger;
+
+// Called when the 27-minute win countdown reaches zero — surviving players win.
+bool Spawn_WinCountdownExpired(bool testConds, bool runActions) {
+    if (!runActions) { return true; }
+
+    TimerWindowShow(gv_Win_CountdownWindow, PlayerGroupAll(), false);
+    WinLose_TimerUp(false, true);
+
+    return true;
+}
+
 // Called when the 3-minute countdown reaches zero.
 bool Spawn_CountdownExpired(bool testConds, bool runActions) {
+    playergroup lv_activePG;
+    playergroup lv_humanPG;
+    int         lv_player;
+
     if (!runActions) { return true; }
 
     TimerWindowShow(gv_Spawn_CountdownWindow, PlayerGroupAll(), false);
 
     // Spawn the Ultralisk and start its AI retarget loop.
     UltraliskAI_Spawn();
+
+    // Build the set of active human players (excluding the AI slot, player 12).
+    lv_activePG = PlayerGroupActive();
+    lv_humanPG  = PlayerGroupEmpty();
+    lv_player   = -1;
+    while (true) {
+        lv_player = PlayerGroupNextPlayer(lv_activePG, lv_player);
+        if (lv_player < 0) { break; }
+        if (lv_player == 12) { continue; }
+        PlayerGroupAdd(lv_humanPG, lv_player);
+    }
+
+    // Start and display the 27-minute survival/win countdown.
+    gv_Win_CountdownTimer = TimerCreate();
+    TimerStart(gv_Win_CountdownTimer, WIN_COUNTDOWN_DURATION, false, c_timeGame);
+
+    gv_Win_CountdownWindow = TimerWindowCreate(gv_Win_CountdownTimer, StringToText("Survive!"), true, false);
+    TimerWindowShow(gv_Win_CountdownWindow, lv_humanPG, true);
+
+    // Register the win handler.
+    gv_Win_CountdownExpiredTrigger = TriggerCreate("Spawn_WinCountdownExpired");
+    TriggerAddEventTimer(gv_Win_CountdownExpiredTrigger, gv_Win_CountdownTimer);
 
     return true;
 }

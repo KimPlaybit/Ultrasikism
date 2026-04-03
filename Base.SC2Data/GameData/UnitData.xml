@@ -350,6 +350,10 @@
     <CUnit id="Hellion">
         <CostResource index="Minerals" value="20"/>
     </CUnit>
+    <!-- HellionTank: Hellion in siege mode, must match Hellion -->
+    <CUnit id="HellionTank">
+        <CostResource index="Minerals" value="20"/>
+    </CUnit>
     <!-- Hellbat: 100M 0V → 20M 0V -->
     <CUnit id="Hellbat">
         <CostResource index="Minerals" value="20"/>
@@ -361,6 +365,11 @@
     </CUnit>
     <!-- SiegeTank: 150M 125V → 30M 6V -->
     <CUnit id="SiegeTank">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="6"/>
+    </CUnit>
+    <!-- SiegeTankSieged: siege mode variant, must match SiegeTank -->
+    <CUnit id="SiegeTankSieged">
         <CostResource index="Minerals" value="30"/>
         <CostResource index="Vespene" value="6"/>
     </CUnit>
@@ -381,6 +390,15 @@
     </CUnit>
     <!-- Viking: 150M 75V → 30M 4V -->
     <CUnit id="Viking">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="4"/>
+    </CUnit>
+    <!-- VikingFighter/VikingAssault: air/ground mode variants, must match Viking -->
+    <CUnit id="VikingFighter">
+        <CostResource index="Minerals" value="30"/>
+        <CostResource index="Vespene" value="4"/>
+    </CUnit>
+    <CUnit id="VikingAssault">
         <CostResource index="Minerals" value="30"/>
         <CostResource index="Vespene" value="4"/>
     </CUnit>

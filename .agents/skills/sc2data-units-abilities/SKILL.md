@@ -244,6 +244,21 @@ Several Terran buildings have **alternate-state CUnit entries** that inherit the
 
 ---
 
+### Terran unit transform cost pitfall
+
+Several Terran units can **transform between modes** (siege, assault, fighter) using a separate `CUnit` entry. Always match the transform variant to the base unit cost.
+
+| Base CUnit | Transform CUnit | Transform |
+|---|---|---|
+| `Hellion` | `HellionTank` | Siege mode (Hellbat transform) |
+| `SiegeTank` | `SiegeTankSieged` | Siege mode |
+| `Viking` | `VikingFighter` | Air mode |
+| `Viking` | `VikingAssault` | Ground mode |
+
+**Rule:** whenever you override a transforming unit's cost, override all its transform variant CUnit IDs to match.
+
+---
+
 ### Zerg morph/burrowed unit cost pitfall
 
 When a Zerg unit can **uproot, burrow, or morph**, SC2 uses a *separate* `CUnit` catalog entry for the transformed form. If that alternate form's `CostResource` (inherited from the base mod) is higher than the primary form's overridden cost, **SC2 charges the mineral/vespene difference when the unit transitions between states**.
